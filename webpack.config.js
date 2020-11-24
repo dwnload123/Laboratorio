@@ -8,13 +8,18 @@ module.exports = {
     filename: 'main.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.tsx', 'ts', '.js', '.jsx'],
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(tsx)$/,
+        use: 'ts-loader',
         exclude: /node_modules/
       },
       {
@@ -27,7 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html',
       filename: 'index.html',
-      inject: 'body'
     })
   ],
+  devtool: 'inline-source-map',
 }
